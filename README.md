@@ -71,15 +71,45 @@
 ## 🚀 快速开始
 
 ### 环境要求
-- Docker & Docker Compose
+- Docker & Docker Compose (Docker部署)
+- Ubuntu 20.04+ / Debian 11+ (一键部署)
 - Go 1.21+ (开发环境)
 - Node.js 18+ (开发环境)
 
-### 使用Docker部署（推荐）
+### Ubuntu一键部署（推荐 🌟）
+
+适用于Ubuntu/Debian系统的一键部署解决方案，自动安装所有依赖并配置生产环境。
+
+1. **下载并运行部署脚本**
+```bash
+# 克隆项目
+git clone https://github.com/Yeaowo/stardew-save-manager.git
+cd stardew-save-manager
+
+# 运行一键部署脚本（需要 sudo 权限）
+sudo ./deploy.sh
+```
+
+2. **访问应用**
+- Web界面: http://localhost
+- API地址: http://localhost/api
+
+**一键部署功能：**
+- ✅ 自动安装 Go 1.21.5 和 Node.js 18
+- ✅ 自动配置 Nginx 反向代理
+- ✅ 使用 Supervisor 进程管理
+- ✅ 配置防火墙安全规则
+- ✅ 创建系统服务用户
+- ✅ 提供管理脚本（启动/停止/重启/状态检查）
+- ✅ 详细的日志记录和监控
+
+**📖 详细部署文档**: [DEPLOYMENT.md](DEPLOYMENT.md)
+
+### 使用Docker部署
 
 1. **克隆项目**
 ```bash
-git clone https://github.com/username/stardew-save-manager.git
+git clone https://github.com/Yeaowo/stardew-save-manager.git
 cd stardew-save-manager
 ```
 
@@ -129,11 +159,13 @@ stardew-save-manager/
 │   ├── models.go           # 数据模型定义
 │   ├── service.go          # 业务逻辑服务
 │   ├── utils.go            # 工具函数
+│   ├── auth.go             # 认证服务
 │   ├── go.mod              # Go模块配置
 │   └── Dockerfile          # 后端Docker配置
 ├── frontend/               # React前端应用
 │   ├── src/
 │   │   ├── components/     # React组件
+│   │   ├── contexts/       # React上下文
 │   │   ├── hooks/          # 自定义Hooks
 │   │   ├── utils/          # 工具函数
 │   │   ├── types/          # 类型定义
@@ -144,6 +176,8 @@ stardew-save-manager/
 │   ├── nginx.conf          # Nginx配置
 │   └── Dockerfile          # 前端Docker配置
 ├── valley_saves/           # 默认存档目录
+├── deploy.sh               # Ubuntu一键部署脚本
+├── DEPLOYMENT.md           # 部署详细文档
 ├── docker-compose.yml      # Docker Compose配置
 └── README.md              # 项目文档
 ```
