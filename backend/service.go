@@ -27,15 +27,48 @@ type SaveService struct {
 
 // NewSaveService 创建新的存档服务实例
 func NewSaveService() *SaveService {
-	defaultPath := "../valley_saves"
-	// 确保默认目录存在
-	os.MkdirAll(defaultPath, 0755)
+	// 默认路径指向项目同级目录的 stardew-multiplayer-docker/valley_saves
+	defaultPath := "../stardew-multiplayer-docker/valley_saves"
+	
+	// 尝试多个可能的路径
+	possiblePaths := []string{
+		defaultPath,                           // 主要目标路径
+		"../stardew-multiplayer-docker/valley_saves", // Windows风格路径
+		"../valley_saves",                     // 备用路径1
+		"./valley_saves",                      // 备用路径2
+	}
+	
+	// 找到第一个有效的路径
+	var validPath string
+	for _, path := range possiblePaths {
+		if cleanPath := filepath.Clean(path); cleanPath != "" {
+			if info, err := os.Stat(cleanPath); err == nil && info.IsDir() {
+				validPath = cleanPath
+				break
+			}
+			// 如果目录不存在，尝试创建它（仅对默认路径）
+			if path == defaultPath {
+				if err := os.MkdirAll(cleanPath, 0755); err == nil {
+					validPath = cleanPath
+					break
+				}
+			}
+		}
+	}
+	
+	// 如果没有找到有效路径，使用默认路径并尝试创建
+	if validPath == "" {
+		validPath = defaultPath
+		os.MkdirAll(validPath, 0755)
+	}
+	
+	// 确保其他必要目录存在
 	os.MkdirAll("./downloads", 0755)
 	os.MkdirAll("./backups", 0755)
 	
 	return &SaveService{
-		currentPath: defaultPath,
-		recentPaths: []string{defaultPath},
+		currentPath: validPath,
+		recentPaths: []string{validPath},
 		logs:        make([]OperationLog, 0),
 	}
 }
@@ -111,6 +144,53 @@ func (s *SaveService) ValidatePath(c *gin.Context) {
 	c.JSON(http.StatusOK, APIResponse{
 		Success: true,
 		Data:    response,
+	})
+}
+
+// GetPathInfo 获取路径信息和检测状态
+func (s *SaveService) GetPathInfo(c *gin.Context) {
+	// 检测所有可能的路径
+	possiblePaths := []string{
+		"../stardew-multiplayer-docker/valley_saves",
+		"../valley_saves", 
+		"./valley_saves",
+	}
+	
+	pathStatus := make([]gin.H, 0)
+	for i, path := range possiblePaths {
+		cleanPath := filepath.Clean(path)
+		exists := false
+		isDir := false
+		var err string
+		
+		if info, statErr := os.Stat(cleanPath); statErr == nil {
+			exists = true
+			isDir = info.IsDir()
+		} else {
+			err = statErr.Error()
+		}
+		
+		status := gin.H{
+			"path":     path,
+			"priority": i + 1,
+			"exists":   exists,
+			"isDir":    isDir,
+			"current":  cleanPath == s.currentPath,
+		}
+		
+		if err != "" {
+			status["error"] = err
+		}
+		
+		pathStatus = append(pathStatus, status)
+	}
+	
+	c.JSON(http.StatusOK, APIResponse{
+		Success: true,
+		Data: gin.H{
+			"currentPath": s.currentPath,
+			"pathStatus": pathStatus,
+		},
 	})
 }
 

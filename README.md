@@ -173,8 +173,14 @@ stardew-save-manager/
 ## 🔧 配置说明
 
 ### 存档路径配置
-应用支持自定义存档路径，常见的星露谷物语存档位置：
+应用支持自定义存档路径，默认优先使用项目同级目录的 `stardew-multiplayer-docker/valley_saves`：
 
+**默认路径优先级**：
+1. `../stardew-multiplayer-docker/valley_saves` (主要目标路径)
+2. `../valley_saves` (备用路径1)
+3. `./valley_saves` (备用路径2)
+
+**星露谷物语官方存档位置**：
 - **Windows**: `%APPDATA%\StardewValley\Saves`
 - **macOS**: `~/.config/StardewValley/Saves`
 - **Linux**: `~/.config/StardewValley/Saves`
@@ -182,7 +188,8 @@ stardew-save-manager/
 ### Docker配置
 - 后端端口: 8080
 - 前端端口: 3000
-- 存档目录挂载: `./valley_saves`
+- 主要存档目录挂载: `../stardew-multiplayer-docker/valley_saves`
+- 备用存档目录挂载: `./valley_saves`
 - 下载目录: `./backend/downloads`
 - 备份目录: `./backend/backups`
 

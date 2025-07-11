@@ -17,6 +17,7 @@ fi
 # 创建必要的目录
 echo "📁 创建必要的目录..."
 mkdir -p valley_saves
+mkdir -p ../stardew-multiplayer-docker/valley_saves
 mkdir -p backend/downloads
 mkdir -p backend/backups
 mkdir -p backend/temp

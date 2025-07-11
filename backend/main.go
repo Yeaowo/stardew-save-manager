@@ -35,6 +35,7 @@ func main() {
 		api.GET("/current-path", saveService.GetCurrentPath)
 		api.POST("/set-path", saveService.SetPath)
 		api.GET("/validate-path", saveService.ValidatePath)
+		api.GET("/path-info", saveService.GetPathInfo)
 		
 		// 存档管理
 		api.GET("/saves", saveService.GetSaves)

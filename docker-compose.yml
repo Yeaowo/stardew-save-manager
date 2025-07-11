@@ -9,6 +9,7 @@ services:
       - "8080:8080"
     volumes:
       - ./valley_saves:/app/valley_saves
+      - ../stardew-multiplayer-docker/valley_saves:/app/stardew-multiplayer-docker/valley_saves
       - ./backend/downloads:/app/downloads
       - ./backend/backups:/app/backups
       - ./backend/temp:/app/temp

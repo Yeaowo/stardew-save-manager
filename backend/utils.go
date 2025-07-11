@@ -44,8 +44,20 @@ func (s *SaveService) isValidPath(path string) bool {
 	// 清理路径
 	cleanPath := filepath.Clean(path)
 	
-	// 检查是否包含危险的路径遍历
-	if strings.Contains(cleanPath, "..") {
+	// 获取绝对路径以进行安全检查
+	absPath, err := filepath.Abs(cleanPath)
+	if err != nil {
+		return false
+	}
+	
+	// 检查是否是危险的路径遍历 (防止访问系统关键目录)
+	// 允许相对路径，但不能访问根目录或系统目录
+	if strings.HasPrefix(absPath, "/") && (absPath == "/" || 
+		strings.HasPrefix(absPath, "/etc") ||
+		strings.HasPrefix(absPath, "/bin") ||
+		strings.HasPrefix(absPath, "/usr/bin") ||
+		strings.HasPrefix(absPath, "/sys") ||
+		strings.HasPrefix(absPath, "/proc")) {
 		return false
 	}
 	
