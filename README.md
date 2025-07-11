@@ -1,0 +1,1 @@
+# stardew-save-manager
