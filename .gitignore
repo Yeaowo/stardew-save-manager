@@ -1,0 +1,103 @@
+# 后端Go项目忽略文件
+backend/main
+backend/*.exe
+backend/*.dll
+backend/*.so
+backend/*.dylib
+backend/downloads/*
+backend/backups/*
+backend/temp/*
+!backend/downloads/.gitkeep
+!backend/backups/.gitkeep
+!backend/temp/.gitkeep
+
+# Go vendor目录
+backend/vendor/
+
+# Go编译文件
+*.o
+*.a
+*.so
+
+# Go测试文件
+*.test
+*.prof
+
+# Go模块缓存
+go.sum
+
+# 前端Node.js项目忽略文件
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.vite/
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/pnpm-debug.log*
+frontend/lerna-debug.log*
+
+# 前端构建文件
+frontend/.DS_Store
+frontend/dist-ssr
+frontend/*.local
+
+# 前端IDE文件
+frontend/.vscode/*
+!frontend/.vscode/extensions.json
+frontend/.idea
+frontend/*.swp
+frontend/*.swo
+
+# 存档目录中的实际存档文件（保留示例）
+valley_saves/*
+!valley_saves/TestFarm_123456789/
+!valley_saves/TestFarm_123456789/*
+
+# Docker相关
+.docker/
+
+# 系统文件
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*~
+
+# IDE和编辑器
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 日志文件
+*.log
+logs/
+
+# 临时文件
+tmp/
+temp/
+*.tmp
+*.temp
+
+# 环境变量文件
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# 操作系统
+.DS_Store
+Thumbs.db
+
+# Docker数据卷
+docker-data/
+
+# 备份文件
+*.backup
+*.bak
