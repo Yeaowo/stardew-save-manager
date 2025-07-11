@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>星露谷物语 - 存档管理器</title>
+    <style>
+      /* 像素字体 */
+      @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+      
+      /* 禁用文本选择防止破坏像素效果 */
+      * {
+        -webkit-font-smoothing: none;
+        -moz-osx-font-smoothing: unset;
+      }
+      
+      /* 自定义滚动条 */
+      ::-webkit-scrollbar {
+        width: 12px;
+      }
+      
+      ::-webkit-scrollbar-track {
+        background: #8B4513;
+        border: 2px solid #654321;
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        background: #CD853F;
+        border: 1px solid #8B4513;
+      }
+      
+      ::-webkit-scrollbar-thumb:hover {
+        background: #DEB887;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

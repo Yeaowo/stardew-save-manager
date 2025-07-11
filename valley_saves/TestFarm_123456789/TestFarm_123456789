@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SaveGame xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <player>
+    <name>小明</name>
+    <farmName>幸福农场</farmName>
+    <money>150000</money>
+    <level>8</level>
+    <millisecondsPlayed>7200000</millisecondsPlayed>
+  </player>
+  <uniqueIDForThisGame>123456789</uniqueIDForThisGame>
+  <dayOfMonth>15</dayOfMonth>
+  <currentSeason>spring</currentSeason>
+  <year>2</year>
+  <timeOfDay>1200</timeOfDay>
+  <currentLocation>Farm</currentLocation>
+  <weather>sunny</weather>
+</SaveGame>

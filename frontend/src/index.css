@@ -1,0 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+@layer base {
+  html {
+    font-family: 'Press Start 2P', 'Courier New', monospace;
+  }
+  
+  body {
+    @apply bg-stardew-grass bg-gradient-to-b from-stardew-sky to-stardew-grass;
+    min-height: 100vh;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+}
+
+@layer components {
+  /* 像素按钮 */
+  .btn-pixel {
+    @apply px-4 py-2 font-game text-pixel-sm border-2 border-black shadow-pixel transition-all duration-75;
+    @apply hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none;
+    @apply active:translate-x-1 active:translate-y-1 active:shadow-none;
+  }
+  
+  .btn-primary {
+    @apply btn-pixel bg-stardew-green text-white border-stardew-darkgreen;
+    @apply hover:bg-stardew-darkgreen;
+  }
+  
+  .btn-secondary {
+    @apply btn-pixel bg-stardew-brown text-stardew-cream border-stardew-soil;
+    @apply hover:bg-stardew-soil;
+  }
+  
+  .btn-danger {
+    @apply btn-pixel bg-stardew-red text-white border-red-800;
+    @apply hover:bg-red-700;
+  }
+  
+  /* 像素卡片 */
+  .card-pixel {
+    @apply bg-stardew-cream border-4 border-stardew-brown shadow-pixel-lg rounded-pixel-lg;
+    @apply relative overflow-hidden;
+  }
+  
+  .card-pixel::before {
+    content: '';
+    @apply absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-stardew-yellow to-transparent opacity-50;
+  }
+  
+  /* 像素输入框 */
+  .input-pixel {
+    @apply px-3 py-2 font-game text-pixel-sm bg-white border-2 border-stardew-brown;
+    @apply focus:outline-none focus:border-stardew-green focus:shadow-pixel;
+    @apply rounded-pixel;
+  }
+  
+  /* 像素表格 */
+  .table-pixel {
+    @apply w-full border-2 border-stardew-brown bg-stardew-cream;
+  }
+  
+  .table-pixel th {
+    @apply bg-stardew-brown text-stardew-cream p-2 border border-stardew-soil font-game text-pixel-sm;
+  }
+  
+  .table-pixel td {
+    @apply p-2 border border-stardew-lightbrown font-game text-pixel-sm;
+  }
+  
+  .table-pixel tr:nth-child(even) {
+    @apply bg-stardew-beige;
+  }
+  
+  .table-pixel tr:hover {
+    @apply bg-stardew-yellow;
+  }
+  
+  /* 像素进度条 */
+  .progress-pixel {
+    @apply w-full h-4 bg-stardew-brown border-2 border-black rounded-pixel overflow-hidden;
+  }
+  
+  .progress-pixel-fill {
+    @apply h-full bg-stardew-green transition-all duration-300;
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 2px,
+      rgba(255,255,255,0.1) 2px,
+      rgba(255,255,255,0.1) 4px
+    );
+  }
+  
+  /* 像素标签 */
+  .badge-pixel {
+    @apply inline-block px-2 py-1 text-pixel-xs font-game rounded-pixel border border-black;
+  }
+  
+  .badge-success {
+    @apply badge-pixel bg-stardew-green text-white;
+  }
+  
+  .badge-warning {
+    @apply badge-pixel bg-stardew-orange text-white;
+  }
+  
+  .badge-error {
+    @apply badge-pixel bg-stardew-red text-white;
+  }
+  
+  /* 像素模态框 */
+  .modal-pixel {
+    @apply fixed inset-0 z-50 flex items-center justify-center;
+    @apply bg-black bg-opacity-50;
+  }
+  
+  .modal-content {
+    @apply card-pixel p-6 m-4 max-w-lg w-full max-h-screen overflow-y-auto;
+  }
+  
+  /* 像素通知 */
+  .notification-pixel {
+    @apply fixed top-4 right-4 z-50 p-4 card-pixel max-w-sm;
+    @apply transform transition-all duration-300;
+  }
+  
+  /* 像素拖拽区域 */
+  .dropzone-pixel {
+    @apply border-4 border-dashed border-stardew-brown bg-stardew-cream;
+    @apply hover:border-stardew-green hover:bg-stardew-beige;
+    @apply transition-all duration-200 rounded-pixel-lg p-8 text-center;
+  }
+  
+  .dropzone-active {
+    @apply border-stardew-green bg-stardew-green bg-opacity-10;
+  }
+  
+  /* 像素菜单 */
+  .menu-pixel {
+    @apply bg-stardew-wood border-2 border-stardew-brown shadow-pixel rounded-pixel;
+  }
+  
+  .menu-item {
+    @apply block w-full px-4 py-2 text-left font-game text-pixel-sm;
+    @apply hover:bg-stardew-lightbrown transition-colors duration-150;
+  }
+  
+  /* 像素选项卡 */
+  .tab-pixel {
+    @apply px-4 py-2 font-game text-pixel-sm border-2 border-b-0;
+    @apply bg-stardew-lightbrown border-stardew-brown;
+    @apply hover:bg-stardew-wood transition-colors duration-150;
+  }
+  
+  .tab-active {
+    @apply bg-stardew-cream border-stardew-darkgreen;
+  }
+}
+
+@layer utilities {
+  .text-shadow-pixel {
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.5);
+  }
+  
+  .pixelated {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+}
