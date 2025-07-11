@@ -72,3 +72,32 @@ type APIResponse struct {
 	Data    interface{} `json:"data,omitempty"`
 	Error   string      `json:"error,omitempty"`
 }
+
+// User 用户模型
+type User struct {
+	ID       string    `json:"id"`
+	Username string    `json:"username"`
+	Email    string    `json:"email"`
+	Password string    `json:"-"` // 不在JSON中返回密码
+	Created  time.Time `json:"created"`
+	Updated  time.Time `json:"updated"`
+}
+
+// LoginRequest 登录请求
+type LoginRequest struct {
+	Username string `json:"username" binding:"required"`
+	Password string `json:"password" binding:"required"`
+}
+
+// RegisterRequest 注册请求
+type RegisterRequest struct {
+	Username string `json:"username" binding:"required"`
+	Email    string `json:"email" binding:"required,email"`
+	Password string `json:"password" binding:"required,min=6"`
+}
+
+// AuthResponse 认证响应
+type AuthResponse struct {
+	Token string `json:"token"`
+	User  User   `json:"user"`
+}

@@ -1,9 +1,11 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Home, FolderOpen, Settings, FileText, Sprout } from 'lucide-react'
+import { Home, FolderOpen, Settings, FileText, Sprout, LogOut, User } from 'lucide-react'
+import { useAuth } from '../contexts/AuthContext'
 
 const Header = () => {
   const location = useLocation()
+  const { user, logout } = useAuth()
 
   const navItems = [
     { path: '/', icon: Home, label: '首页' },
@@ -33,26 +35,49 @@ const Header = () => {
             </div>
           </div>
 
-          {/* 导航菜单 */}
-          <nav className="flex space-x-1">
-            {navItems.map(({ path, icon: Icon, label }) => (
-              <Link
-                key={path}
-                to={path}
-                className={`
-                  flex items-center space-x-2 px-4 py-2 rounded-pixel border-2 transition-all duration-150
-                  font-game text-pixel-sm
-                  ${isActive(path)
-                    ? 'bg-stardew-cream text-stardew-brown border-stardew-darkgreen shadow-pixel-inset'
-                    : 'bg-stardew-lightbrown text-stardew-cream border-stardew-brown hover:bg-stardew-wood hover:shadow-pixel'
-                  }
-                `}
+          {/* 导航菜单和用户信息 */}
+          <div className="flex items-center space-x-4">
+            <nav className="flex space-x-1">
+              {navItems.map(({ path, icon: Icon, label }) => (
+                <Link
+                  key={path}
+                  to={path}
+                  className={`
+                    flex items-center space-x-2 px-4 py-2 rounded-pixel border-2 transition-all duration-150
+                    font-game text-pixel-sm
+                    ${isActive(path)
+                      ? 'bg-stardew-cream text-stardew-brown border-stardew-darkgreen shadow-pixel-inset'
+                      : 'bg-stardew-lightbrown text-stardew-cream border-stardew-brown hover:bg-stardew-wood hover:shadow-pixel'
+                    }
+                  `}
+                >
+                  <Icon className="w-4 h-4" />
+                  <span className="hidden sm:inline">{label}</span>
+                </Link>
+              ))}
+            </nav>
+
+            {/* 用户信息 */}
+            <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2 px-3 py-1 bg-stardew-lightbrown rounded-pixel border-2 border-stardew-brown">
+                <User className="w-4 h-4 text-stardew-cream" />
+                <span className="font-game text-pixel-sm text-stardew-cream hidden sm:inline">
+                  {user?.username || '游客'}
+                </span>
+              </div>
+              
+              <button
+                onClick={logout}
+                className="flex items-center space-x-2 px-3 py-2 rounded-pixel border-2 transition-all duration-150
+                  font-game text-pixel-sm bg-stardew-red text-stardew-cream border-stardew-darkred
+                  hover:bg-stardew-darkred hover:shadow-pixel"
+                title="登出"
               >
-                <Icon className="w-4 h-4" />
-                <span className="hidden sm:inline">{label}</span>
-              </Link>
-            ))}
-          </nav>
+                <LogOut className="w-4 h-4" />
+                <span className="hidden sm:inline">登出</span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 
