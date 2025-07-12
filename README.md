@@ -80,15 +80,29 @@
 
 适用于Ubuntu/Debian系统的一键部署解决方案，自动安装所有依赖并配置生产环境。
 
-1. **下载并运行部署脚本**
+#### 使用修复版脚本（推荐）
 ```bash
 # 克隆项目
 git clone https://github.com/Yeaowo/stardew-save-manager.git
 cd stardew-save-manager
 
-# 运行一键部署脚本（需要 sudo 权限）
+# 运行修复版部署脚本（需要 sudo 权限）
+sudo ./deploy_fixed.sh
+```
+
+#### 使用原版脚本
+```bash
+# 运行原版部署脚本
 sudo ./deploy.sh
 ```
+
+**修复版脚本优势**:
+- ✅ 网络连接检查
+- ✅ 磁盘空间验证
+- ✅ 增强错误处理
+- ✅ 自动清理功能
+- ✅ 详细日志查看
+- ✅ 更好的故障排除
 
 2. **访问应用**
 - Web界面: http://localhost
@@ -103,7 +117,8 @@ sudo ./deploy.sh
 - ✅ 提供管理脚本（启动/停止/重启/状态检查）
 - ✅ 详细的日志记录和监控
 
-**📖 详细部署文档**: [DEPLOYMENT.md](DEPLOYMENT.md)
+**📖 详细部署文档**: [DEPLOYMENT.md](DEPLOYMENT.md)  
+**🔧 部署问题修复**: [DEPLOYMENT_FIXES.md](DEPLOYMENT_FIXES.md)
 
 ### 使用Docker部署
 
@@ -177,7 +192,9 @@ stardew-save-manager/
 │   └── Dockerfile          # 前端Docker配置
 ├── valley_saves/           # 默认存档目录
 ├── deploy.sh               # Ubuntu一键部署脚本
+├── deploy_fixed.sh         # Ubuntu一键部署脚本（修复版）
 ├── DEPLOYMENT.md           # 部署详细文档
+├── DEPLOYMENT_FIXES.md     # 部署问题修复文档
 ├── docker-compose.yml      # Docker Compose配置
 └── README.md              # 项目文档
 ```

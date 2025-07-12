@@ -6,21 +6,21 @@ import (
 
 // SaveInfo 存档信息
 type SaveInfo struct {
-	ID          string    `json:"id"`
-	Name        string    `json:"name"`
-	PlayerName  string    `json:"playerName"`
-	FarmName    string    `json:"farmName"`
-	Money       int64     `json:"money"`
-	Level       int       `json:"level"`
-	Day         int       `json:"day"`
-	Season      string    `json:"season"`
-	Year        int       `json:"year"`
-	PlayTime    string    `json:"playTime"`
-	LastPlayed  time.Time `json:"lastPlayed"`
-	Size        int64     `json:"size"`
-	Path        string    `json:"path"`
-	IsValid     bool      `json:"isValid"`
-	Error       string    `json:"error,omitempty"`
+	ID         string    `json:"id"`
+	Name       string    `json:"name"`
+	PlayerName string    `json:"playerName"`
+	FarmName   string    `json:"farmName"`
+	Money      int64     `json:"money"`
+	Level      int       `json:"level"`
+	Day        int       `json:"day"`
+	Season     string    `json:"season"`
+	Year       int       `json:"year"`
+	PlayTime   string    `json:"playTime"`
+	LastPlayed time.Time `json:"lastPlayed"`
+	Size       int64     `json:"size"`
+	Path       string    `json:"path"`
+	IsValid    bool      `json:"isValid"`
+	Error      string    `json:"error,omitempty"`
 }
 
 // PathConfig 路径配置
